@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Balanced Social — Picnics, Pilates & Feel-Good Events</title>
+<meta name="description" content="Balanced Social hosts picnics, pilates and feel-good community events. Move, breathe, connect. Book your spot.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Dancing+Script:wght@600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F5F1E8;
+    --cream-deep:#ECE5D6;
+    --ink:#1A1A1A;
+    --ink-soft:#57534A;
+    --burgundy:#700C0C;
+    --burgundy-deep:#570909;
+    --sage:#A8B8A0;
+    --clay:#D4A5A0;
+    --line:rgba(26,26,26,.13);
+    --radius:26px;
+    --shadow:0 18px 50px -24px rgba(26,26,26,.4);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Outfit',system-ui,sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:500;line-height:1.08;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 26px}
+  .accent{color:var(--burgundy)}
+
+  /* ---------- Wordmark ---------- */
+  .mark{display:inline-flex;flex-direction:column;align-items:center;line-height:.82}
+  .mark .b{font-family:'Dancing Script',cursive;font-weight:700;font-size:1.55em;transform:rotate(-4deg);margin-bottom:-.06em}
+  .mark .s{font-family:'Fraunces',serif;font-weight:600;font-size:1em;letter-spacing:.02em;text-transform:lowercase}
+
+  /* ---------- Nav ---------- */
+  header{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background:rgba(245,241,232,.85);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:clamp(80px,9vw,98px)}
+  nav .mark{font-size:19px;color:var(--burgundy)}
+  .logo{display:inline-flex;align-items:center}
+  .logo-img{height:clamp(58px,6.2vw,86px);width:auto;display:block;max-width:62vw;object-fit:contain}
+  nav .mark .b{font-size:38px}
+  nav .mark .s{font-size:20px}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{font-size:14.5px;color:var(--ink-soft);font-weight:400;transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .btn{display:inline-block;background:var(--burgundy);color:#fff;padding:12px 22px;border-radius:100px;font-size:14.5px;font-weight:500;transition:transform .2s ease,background .2s}
+  .btn:hover{transform:translateY(-2px);background:var(--burgundy-deep)}
+  .btn-out{background:transparent;color:var(--ink);border:1.5px solid var(--burgundy)}
+  .btn-out:hover{background:var(--burgundy);color:#fff}
+  .btn-book{background:var(--burgundy);color:#fff;font-weight:600;box-shadow:0 8px 18px -8px rgba(112,12,12,.5)}
+  .btn-book:hover{background:var(--burgundy-deep)}
+  .nav-links a.btn{color:#fff}
+  .nav-toggle{display:none;background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink)}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;padding:84px 0 96px;text-align:center;overflow:hidden}
+  .blob{position:absolute;border-radius:50%;filter:blur(8px);opacity:.55;z-index:0}
+  .blob.one{width:430px;height:430px;background:var(--clay);top:-120px;right:-90px}
+  .blob.two{width:360px;height:360px;background:var(--sage);bottom:-150px;left:-120px;opacity:.5}
+  .hero .wrap{position:relative;z-index:1}
+  .eyebrow{display:inline-block;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--burgundy);font-weight:500;margin-bottom:26px}
+  .hero h1{font-size:clamp(46px,8vw,92px);font-weight:500}
+  .hero h1 em{font-family:'Dancing Script',cursive;font-style:normal;font-weight:700;color:var(--burgundy)}
+  .hero p{max-width:540px;margin:26px auto 38px;font-size:18px;color:var(--ink-soft)}
+  .hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+  .hero-cta .btn{padding:17px 34px;font-size:16px;font-weight:600;letter-spacing:.005em;display:inline-flex;align-items:center;gap:10px;border-radius:100px}
+  .hero-cta .btn:not(.btn-out){box-shadow:0 16px 32px -14px rgba(112,12,12,.65)}
+  .hero-cta .btn:not(.btn-out):hover{transform:translateY(-3px);box-shadow:0 22px 40px -14px rgba(112,12,12,.7)}
+  .hero-cta .btn .arrow{transition:transform .25s ease}
+  .hero-cta .btn:hover .arrow{transform:translateX(5px)}
+  .hero-cta .btn-out{backdrop-filter:blur(2px)}
+  .hero-mark{font-size:20px;margin-bottom:10px}
+  .hero-mark .b{font-size:60px}
+  .hero-mark .s{font-size:22px;letter-spacing:.08em}
+
+  .ticker{margin-top:70px;display:flex;gap:40px;justify-content:center;flex-wrap:wrap;color:var(--ink-soft);font-size:15px}
+  .ticker span{display:inline-flex;align-items:center;gap:8px}
+  .ticker .dot{width:6px;height:6px;border-radius:50%;background:var(--sage)}
+
+  /* ---------- Section base ---------- */
+  section{padding:96px 0}
+  .sec-head{text-align:center;max-width:620px;margin:0 auto 56px}
+  .sec-head .eyebrow{margin-bottom:16px}
+  .sec-head h2{font-size:clamp(32px,5vw,48px)}
+  .sec-head p{margin-top:16px;color:var(--ink-soft);font-size:17px}
+
+  /* ---------- About ---------- */
+  .about{background:var(--cream-deep)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .about-copy h2{font-size:clamp(30px,4.5vw,44px);margin-bottom:22px}
+  .about-copy p{color:var(--ink-soft);font-size:17px;margin-bottom:18px}
+  .pill-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+  .pill{background:var(--cream);border:1px solid var(--line);padding:9px 18px;border-radius:100px;font-size:14px;font-weight:500}
+  .about-art{aspect-ratio:4/5;border-radius:var(--radius);background:
+      radial-gradient(circle at 30% 25%,#dcb6b1,transparent 55%),
+      radial-gradient(circle at 75% 70%,#A8B8A0,transparent 55%),
+      linear-gradient(150deg,#D4A5A0,#A8B8A0);
+      position:relative;box-shadow:var(--shadow);overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .about-photo{width:100%;height:100%;object-fit:cover;display:block}
+  .about-art .mark{font-size:30px;color:var(--ink);opacity:.85}
+  .about-art .mark .b{font-size:78px}
+  .about-art .mark .s{font-size:30px;letter-spacing:.1em}
+
+  /* ---------- Events ---------- */
+  .events-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:26px}
+  .event{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 8px 26px -18px rgba(26,26,26,.4);transition:transform .3s ease,box-shadow .3s ease}
+  .event:hover{transform:translateY(-8px);box-shadow:0 28px 50px -26px rgba(26,26,26,.5)}
+  .event-banner{height:158px;display:flex;align-items:flex-end;padding:22px 24px;color:#fff;font-family:'Fraunces',serif;font-size:23px;font-weight:500;letter-spacing:-.01em;box-shadow:inset 0 -75px 60px -30px rgba(0,0,0,.42)}
+  .ev-picnic{background:linear-gradient(140deg,#A8B8A0,#8c9e83)}
+  .ev-pilates{background:linear-gradient(140deg,#D4A5A0,#bd8983)}
+  .ev-social{background:linear-gradient(140deg,#8a1717,#5e0a0a)}
+  .event-body{padding:26px 28px 30px;display:flex;flex-direction:column;flex:1}
+  .event-meta{display:flex;gap:14px;font-size:13.5px;color:var(--ink-soft);margin-bottom:12px;flex-wrap:wrap}
+  .event-meta span{display:inline-flex;align-items:center;gap:6px}
+  .event h3{font-size:23px;margin-bottom:10px}
+  .event-body p{font-size:15px;color:var(--ink-soft);flex:1;margin-bottom:20px}
+  .event-foot{display:flex;flex-direction:column;gap:14px}
+  .price{font-family:'Fraunces',serif;font-size:24px;font-weight:600}
+  .price small{font-size:13px;color:var(--ink-soft);font-weight:400;font-family:'Outfit'}
+  .book-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:var(--burgundy);color:#fff;padding:15px 22px;border-radius:100px;font-size:16px;font-weight:600;letter-spacing:.01em;box-shadow:0 8px 18px -8px rgba(112,12,12,.5);transition:background .2s,transform .2s;white-space:nowrap}
+  .book-btn:hover{background:var(--burgundy-deep);transform:translateY(-2px)}
+  .book-btn .arrow{transition:transform .2s}
+  .book-btn:hover .arrow{transform:translateX(4px)}
+  .tag{position:absolute;top:16px;right:16px;background:#fff;color:var(--burgundy);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;padding:6px 13px;border-radius:100px;font-weight:700;z-index:2;box-shadow:0 3px 10px -3px rgba(0,0,0,.3)}
+  .rain-note{text-align:center;margin-top:44px;color:var(--ink-soft);font-size:15px}
+  .rain-note span{background:var(--clay);padding:3px 10px;border-radius:8px}
+
+  /* ---------- Steps / what to expect ---------- */
+  .steps{background:var(--ink);color:var(--cream)}
+  .steps .eyebrow{color:var(--clay)}
+  .steps .sec-head h2{color:var(--cream)}
+  .steps .sec-head p{color:rgba(245,238,225,.7)}
+  .steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:30px}
+  .step{padding:30px;border:1px solid rgba(245,238,225,.16);border-radius:var(--radius)}
+  .step .n{font-family:'Fraunces',serif;font-size:40px;color:var(--burgundy);margin-bottom:14px;display:block}
+  .step h3{font-size:20px;color:var(--cream);margin-bottom:10px}
+  .step p{font-size:15px;color:rgba(245,238,225,.72)}
+
+  /* ---------- Gallery ---------- */
+  .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .gal{aspect-ratio:1;border-radius:20px;display:flex;align-items:center;justify-content:center;font-family:'Dancing Script',cursive;font-size:26px;color:rgba(255,255,255,.85)}
+  .gal:nth-child(1){background:linear-gradient(135deg,#700C0C,#9a2a2a)}
+  .gal:nth-child(2){background:linear-gradient(135deg,#A8B8A0,#c2cdb6)}
+  .gal:nth-child(3){background:linear-gradient(135deg,#D4A5A0,#e2c1bc)}
+  .gal:nth-child(4){background:linear-gradient(135deg,#8a1a1a,#700C0C)}
+  .gal:nth-child(5){background:linear-gradient(135deg,#b9c7b1,#A8B8A0)}
+  .gal:nth-child(6){background:linear-gradient(135deg,#dcb6b1,#D4A5A0)}
+  .gal:nth-child(7){background:linear-gradient(135deg,#700C0C,#561414)}
+  .gal:nth-child(8){background:linear-gradient(135deg,#A8B8A0,#D4A5A0)}
+  .gal-note{text-align:center;margin-top:22px;font-size:14px;color:var(--ink-soft)}
+
+  /* ---------- FAQ ---------- */
+  .faq-wrap{max-width:760px;margin:0 auto}
+  .faq{border-bottom:1px solid var(--line)}
+  .faq summary{cursor:pointer;list-style:none;padding:24px 0;font-family:'Fraunces',serif;font-size:19px;font-weight:500;display:flex;justify-content:space-between;align-items:center;gap:20px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:'+';font-size:26px;color:var(--burgundy);transition:transform .2s}
+  .faq[open] summary::after{transform:rotate(45deg)}
+  .faq p{padding:0 0 24px;color:var(--ink-soft);font-size:16px}
+
+  /* ---------- Signup / CTA ---------- */
+  .join{background:var(--cream-deep);text-align:center}
+  .join .card{background:linear-gradient(150deg,#e6cfca,#c8d4bf);border-radius:34px;padding:64px 32px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+  .join h2{font-size:clamp(30px,5vw,46px);margin-bottom:16px}
+  .join p{max-width:480px;margin:0 auto 30px;color:var(--ink-soft);font-size:17px}
+  .signup-form{display:flex;gap:10px;max-width:440px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+  .signup-form input{flex:1;min-width:220px;padding:14px 20px;border-radius:100px;border:1.5px solid var(--ink);background:rgba(255,255,255,.6);font-family:inherit;font-size:15px}
+  .signup-form input:focus{outline:none;border-color:var(--burgundy)}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink);color:var(--cream);padding:64px 0 32px}
+  .foot-grid{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;margin-bottom:44px}
+  footer .mark{font-size:22px;color:var(--cream)}
+  footer .mark .b{font-size:56px}
+  footer .mark .s{font-size:24px;letter-spacing:.1em}
+  .foot-tag{color:rgba(245,238,225,.6);font-size:14px;max-width:260px;margin-top:14px}
+  .foot-col h4{font-family:'Outfit';font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,238,225,.5);margin-bottom:16px;font-weight:500}
+  .foot-col a{display:block;color:rgba(245,238,225,.85);font-size:15px;margin-bottom:10px;transition:color .2s}
+  .foot-col a:hover{color:var(--burgundy)}
+  .foot-bottom{border-top:1px solid rgba(245,238,225,.15);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13.5px;color:rgba(245,238,225,.5)}
+
+  /* ---------- Date picker modal ---------- */
+  .modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:24px}
+  .modal.open{display:flex}
+  .modal-backdrop{position:absolute;inset:0;background:rgba(26,26,26,.55);backdrop-filter:blur(4px)}
+  .modal-card{position:relative;z-index:1;background:var(--cream);width:100%;max-width:520px;max-height:86vh;overflow:auto;border-radius:28px;box-shadow:var(--shadow);padding:36px 32px 30px;animation:pop .25s ease}
+  @keyframes pop{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+  .modal-close{position:absolute;top:18px;right:18px;width:38px;height:38px;border:none;border-radius:50%;background:rgba(26,26,26,.06);font-size:20px;cursor:pointer;color:var(--ink);line-height:1}
+  .modal-close:hover{background:rgba(26,26,26,.12)}
+  .modal-eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--burgundy);font-weight:600}
+  .modal-card h3{font-size:28px;margin:8px 0 4px;font-family:'Fraunces',serif}
+  .modal-sub{color:var(--ink-soft);font-size:14.5px;margin-bottom:24px}
+  .date-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 18px;border:1px solid var(--line);border-radius:16px;margin-bottom:12px;background:#fff;transition:border-color .2s}
+  .date-row:hover{border-color:var(--burgundy)}
+  .date-info{display:flex;flex-direction:column;gap:3px}
+  .date-info .d{font-family:'Fraunces',serif;font-size:17px;font-weight:600}
+  .date-info .m{font-size:12.5px;color:var(--clay);font-weight:600;letter-spacing:.02em}
+  .date-info .m.muted{color:var(--ink-soft);font-weight:400}
+  .date-book{background:var(--burgundy);color:#fff;border:none;padding:10px 20px;border-radius:100px;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .2s}
+  .date-book:hover{background:var(--burgundy-deep)}
+  .date-book.soldout{background:transparent;color:var(--ink-soft);border:1px solid var(--line);cursor:not-allowed}
+  .modal-empty{text-align:center;color:var(--ink-soft);padding:26px 10px;font-size:15px;line-height:1.6}
+  .modal-foot{margin-top:16px;font-size:12.5px;color:var(--ink-soft);text-align:center}
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:820px){
+    .nav-links{position:fixed;inset:80px 0 auto 0;background:var(--cream);flex-direction:column;padding:24px 26px 30px;gap:18px;border-bottom:1px solid var(--line);transform:translateY(-130%);transition:transform .3s ease}
+    .nav-links.open{transform:translateY(0)}
+    .nav-toggle{display:block}
+    .about-grid{grid-template-columns:1fr;gap:40px}
+    .gallery-grid{grid-template-columns:repeat(2,1fr)}
+    section{padding:72px 0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#top" class="logo" aria-label="Balanced Social">
+      <img src="images/logo.png" alt="Balanced Social" class="logo-img" onerror="this.style.display='none';document.getElementById('navWordmark').style.display='inline-flex'">
+      <span class="mark" id="navWordmark" style="display:none"><span class="b">Balanced</span><span class="s">social</span></span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#events">Events</a>
+      <a href="#expect">What to expect</a>
+      <a href="#faq">FAQ</a>
+      <a href="#events" class="btn btn-book">Book your spot</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">&#9776;</button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="blob one"></div>
+  <div class="blob two"></div>
+  <div class="wrap">
+    <span class="eyebrow">Move &middot; Breathe &middot; Connect</span>
+    <h1>Picnics, pilates and<br>socials that feel <em>good</em>.</h1>
+    <p>We bring people together for slow mornings, mindful movement and golden-hour gatherings. Come as you are &mdash; leave a little lighter.</p>
+    <div class="hero-cta">
+      <a href="#events" class="btn">Choose your experience <span class="arrow">&rarr;</span></a>
+      <a href="#about" class="btn btn-out">How it works</a>
+    </div>
+    <div class="ticker">
+      <span><span class="dot"></span>Outdoor picnics</span>
+      <span><span class="dot"></span>Reformer &amp; mat pilates</span>
+      <span><span class="dot"></span>Rain-or-shine plan</span>
+      <span><span class="dot"></span>All levels welcome</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-copy">
+      <span class="eyebrow accent">Who we are</span>
+      <h2>A community built around balance.</h2>
+      <p>Balanced Social started with a simple idea: wellness is better with people. We host curated picnics, pilates sessions and feel-good social events designed to help you move your body, quiet your mind and meet good people along the way.</p>
+      <p>Every gathering is thoughtfully put together &mdash; beautiful spaces, calm energy, and zero pressure. If the weather turns, we simply move the magic indoors.</p>
+      <div class="pill-row">
+        <span class="pill">&#127895; Picnics</span>
+        <span class="pill">&#129496; Pilates</span>
+        <span class="pill">&#127749; Sunset socials</span>
+        <span class="pill">&#9730; Indoor backup</span>
+      </div>
+    </div>
+    <div class="about-art">
+      <img src="images/pilates.jpg" alt="Outdoor pilates session with Balanced Social" class="about-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="mark" style="display:none"><span class="b">Balanced</span><span class="s">social</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section id="events">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow accent">Step one</span>
+      <h2>Choose what you're after</h2>
+      <p>Pick your experience, then choose from the available dates and reserve your spot with a secure checkout.</p>
+    </div>
+    <div class="events-grid">
+
+      <!-- PACKAGE 1 -->
+      <article class="event">
+        <div class="event-banner ev-picnic">Sunday Pilates &amp; Matcha</div>
+        <div class="event-body">
+          <span class="tag">Most popular</span>
+          <div class="event-meta">
+            <span>&#128197; Every Sunday</span>
+            <span>&#128340; 9:30am</span>
+            <span>&#128205; Studio + lawn</span>
+          </div>
+          <p>Our signature Sunday. An all-levels flow followed by ceremonial matcha and good company. The easy, feel-good reset.</p>
+          <div class="event-foot">
+            <div class="price">&pound;28 <small>/ person</small></div>
+            <a class="book-btn" href="#" data-package="sunday">See available dates <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PACKAGE 2 -->
+      <article class="event">
+        <div class="event-banner ev-pilates">Charity Event</div>
+        <div class="event-body">
+          <span class="tag">Fundraiser</span>
+          <div class="event-meta">
+            <span>&#128197; Date TBC</span>
+            <span>&#128205; All welcome</span>
+          </div>
+          <p>A feel-good fundraiser bringing the community together for movement, matcha and connection &mdash; with proceeds going to a cause close to our hearts. Come move, give back, and meet good people.</p>
+          <div class="event-foot">
+            <div class="price">From &pound;&mdash; <small>&middot; for charity</small></div>
+            <a class="book-btn" href="#" data-package="charity">See available dates <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PACKAGE 3 -->
+      <article class="event">
+        <div class="event-banner ev-social">Rooftop Pilates with a View</div>
+        <div class="event-body">
+          <span class="tag">Premium</span>
+          <div class="event-meta">
+            <span>&#128197; Monthly</span>
+            <span>&#128340; 6:00pm</span>
+            <span>&#128205; Rooftop</span>
+          </div>
+          <p>Pilates on a rooftop with skyline views, followed by food and drinks. Our most special gathering &mdash; limited spots.</p>
+          <div class="event-foot">
+            <div class="price">&pound;&mdash; <small>· food included</small></div>
+            <a class="book-btn" href="#" data-package="rooftop">See available dates <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+    <p class="rain-note">&#9730; <span>Rain plan:</span> if the weather turns, every outdoor session moves indoors &mdash; same time, same vibe. We'll always email you the location.</p>
+  </div>
+</section>
+
+<!-- WHAT TO EXPECT -->
+<section class="steps" id="expect">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Simple &amp; easy</span>
+      <h2>How it works</h2>
+      <p>From booking to your first deep breath &mdash; here's the flow.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step"><span class="n">01</span><h3>Pick a package</h3><p>Choose the experience you're after &mdash; Sunday pilates, rooftop, or more.</p></div>
+      <div class="step"><span class="n">02</span><h3>Book securely</h3><p>Reserve your spot with a quick, secure card checkout powered by Stripe.</p></div>
+      <div class="step"><span class="n">03</span><h3>Check your inbox</h3><p>You'll get a confirmation with the exact location, timing and what to bring.</p></div>
+      <div class="step"><span class="n">04</span><h3>Show up &amp; unwind</h3><p>Arrive as you are. We've handled the rest &mdash; just be present and enjoy.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow accent">Moments</span>
+      <h2>A little of the feeling</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gal">balance</div>
+      <div class="gal">breathe</div>
+      <div class="gal">gather</div>
+      <div class="gal">move</div>
+      <div class="gal">glow</div>
+      <div class="gal">connect</div>
+      <div class="gal">slow</div>
+      <div class="gal">social</div>
+    </div>
+    <p class="gal-note">Swap these tiles for your own photos &mdash; drop images in an <code>/images</code> folder and update the gallery.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow accent">Good to know</span>
+      <h2>Questions, answered</h2>
+    </div>
+    <div class="faq-wrap">
+      <details class="faq" open><summary>Do I need to be experienced to join pilates?</summary><p>Not at all. Every session is all-levels and beginner-friendly &mdash; our instructors offer modifications so you can move at your own pace.</p></details>
+      <details class="faq"><summary>What happens if it rains?</summary><p>Every outdoor event has an indoor backup. If the forecast turns, we move to our indoor space at the same time and email you the updated location in advance.</p></details>
+      <details class="faq"><summary>Can I come on my own?</summary><p>Absolutely &mdash; most people do. Our events are designed to be warm and welcoming, and you'll leave having met a few good people.</p></details>
+      <details class="faq"><summary>What's included in the ticket?</summary><p>It varies by event, but typically your spot, any equipment (like mats), and the food or drinks listed on the event. Details are in your confirmation email.</p></details>
+      <details class="faq"><summary>What's your refund policy?</summary><p>Spots are limited, so we ask for at least 48 hours' notice to offer a credit toward a future event. Reach out any time and we'll sort it.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section class="join" id="join">
+  <div class="wrap">
+    <div class="card">
+      <span class="eyebrow accent">Stay in the loop</span>
+      <h2>Be first to know about new events</h2>
+      <p>Join the list for early access to bookings, member-only gatherings and the occasional feel-good note.</p>
+      <form class="signup-form" onsubmit="event.preventDefault();this.querySelector('input').value='';alert('Thanks! You are on the list. (Connect this form to your email tool to go live.)')">
+        <input type="email" placeholder="your@email.com" required>
+        <button class="btn" type="submit">Join us</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="mark"><span class="b">Balanced</span><span class="s">social</span></div>
+        <p class="foot-tag">Picnics, pilates and feel-good events. Move, breathe, connect.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <a href="#about">About</a>
+        <a href="#events">Packages</a>
+        <a href="#expect">How it works</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h4>Connect</h4>
+        <a href="https://www.instagram.com/balanced.social/" target="_blank" rel="noopener">Instagram</a>
+        <a href="mailto:hello@balancedsocial.com">Email us</a>
+        <a href="#join">Newsletter</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; <span id="yr"></span> Balanced Social. All rights reserved.</span>
+      <span>Made with care &middot; Payments secured by Stripe</span>
+    </div>
+  </div>
+</footer>
+
+<!-- DATE PICKER MODAL -->
+<div class="modal" id="dateModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-card">
+    <button class="modal-close" data-close aria-label="Close">&times;</button>
+    <span class="modal-eyebrow">Choose a date</span>
+    <h3 id="modalTitle">Package</h3>
+    <p class="modal-sub" id="modalSub"></p>
+    <div id="dateList"></div>
+    <p class="modal-foot">Secure checkout &middot; you'll get a confirmation email with the location and what to bring.</p>
+  </div>
+</div>
+
+<script>
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  // Mobile nav
+  var t=document.getElementById('navToggle'),l=document.getElementById('navLinks');
+  t.addEventListener('click',function(){l.classList.toggle('open');});
+  l.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){l.classList.remove('open');});});
+
+  /* =====================================================================
+     BOOKING CONFIG — edit this block to manage your packages & dates.
+     For each package, paste its Stripe Payment Link into `stripe`.
+     - sunday: dates auto-generate (next N Sundays), so you never touch them.
+     - rooftop / two: add dates manually to the `dates` array.
+       Each date: { iso:'YYYY-MM-DD', label:'Sat 18 Jul', tag:'Limited spots', soldOut:false }
+     Capacity tip: in Stripe, set each Payment Link's usage limit to your
+     spots-per-session — Stripe then auto-closes a date once it's full.
+  ===================================================================== */
+  var PACKAGES={
+    sunday:{
+      title:'Sunday Pilates & Matcha',
+      sub:'Every Sunday · 9:30am · Studio + lawn · £28 per person',
+      price:'£28', time:'9:30am',
+      stripe:'REPLACE_WITH_STRIPE_LINK',
+      recurring:'sunday', count:8
+    },
+    charity:{
+      title:'Charity Event',
+      sub:'A community fundraiser — dates coming soon.',
+      price:'', time:'',
+      stripe:'REPLACE_WITH_STRIPE_LINK',
+      dates:[]
+    },
+    rooftop:{
+      title:'Rooftop Pilates with a View',
+      sub:'Monthly · 6:00pm · Rooftop · food included',
+      price:'', time:'6:00pm',
+      stripe:'REPLACE_WITH_STRIPE_LINK',
+      dates:[
+        { iso:'2026-07-18', label:'Sat 18 Jul', tag:'Limited spots' },
+        { iso:'2026-08-15', label:'Sat 15 Aug', tag:'Limited spots' }
+      ]
+    }
+  };
+
+  function nextSundays(n){
+    var out=[], d=new Date(); d.setHours(0,0,0,0);
+    var add=(7-d.getDay())%7; if(add===0) add=7;     // next Sunday (skip today)
+    d.setDate(d.getDate()+add);
+    var fmt=new Intl.DateTimeFormat('en-GB',{weekday:'short',day:'numeric',month:'short'});
+    for(var i=0;i<n;i++){ var dd=new Date(d); out.push({iso:dd.toISOString().slice(0,10),label:fmt.format(dd)}); d.setDate(d.getDate()+7); }
+    return out;
+  }
+
+  var modal=document.getElementById('dateModal');
+  function closeModal(){ modal.classList.remove('open'); document.body.style.overflow=''; }
+  function openPackage(key){
+    var p=PACKAGES[key]; if(!p) return;
+    document.getElementById('modalTitle').textContent=p.title;
+    document.getElementById('modalSub').textContent=p.sub||'';
+    var list=document.getElementById('dateList'); list.innerHTML='';
+    var dates=p.dates||[];
+    if(p.recurring==='sunday') dates=nextSundays(p.count||8);
+    if(!dates.length){
+      list.innerHTML='<p class="modal-empty">Dates coming soon.<br>Follow <a href="https://www.instagram.com/balanced.social/" target="_blank" rel="noopener" style="color:var(--burgundy);font-weight:600">@balanced.social</a> to be first to know.</p>';
+    }
+    dates.forEach(function(dt){
+      var row=document.createElement('div'); row.className='date-row';
+      var info=document.createElement('div'); info.className='date-info';
+      var meta = dt.soldOut ? '<span class="m muted">Sold out</span>' : (dt.tag ? '<span class="m">'+dt.tag+'</span>' : (p.time?'<span class="m muted">'+p.time+'</span>':''));
+      info.innerHTML='<span class="d">'+dt.label+(p.time?' · '+p.time:'')+'</span>'+meta;
+      row.appendChild(info);
+      var btn=document.createElement(dt.soldOut?'span':'a');
+      btn.className='date-book'+(dt.soldOut?' soldout':'');
+      btn.textContent=dt.soldOut?'Sold out':(p.price?'Book · '+p.price:'Book');
+      if(!dt.soldOut){
+        if(p.stripe && p.stripe!=='REPLACE_WITH_STRIPE_LINK'){
+          btn.href=p.stripe+(p.stripe.indexOf('?')>-1?'&':'?')+'client_reference_id='+encodeURIComponent(key+'-'+dt.iso);
+          btn.target='_blank'; btn.rel='noopener';
+        } else {
+          btn.href='#';
+          btn.addEventListener('click',function(e){ e.preventDefault(); alert('Add your Stripe Payment Link for "'+p.title+'" in the BOOKING CONFIG (PACKAGES.'+key+'.stripe) to take bookings for '+dt.label+'.'); });
+        }
+      }
+      row.appendChild(btn);
+      list.appendChild(row);
+    });
+    modal.classList.add('open'); document.body.style.overflow='hidden';
+  }
+
+  document.querySelectorAll('.book-btn').forEach(function(b){
+    b.addEventListener('click',function(e){ e.preventDefault(); openPackage(b.getAttribute('data-package')); });
+  });
+  document.querySelectorAll('[data-close]').forEach(function(x){ x.addEventListener('click',closeModal); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeModal(); });
+</script>
+</body>
+</html>

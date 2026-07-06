@@ -295,55 +295,55 @@
     </div>
     <div class="events-grid">
 
-      <!-- PACKAGE 1 -->
+      <!-- PACKAGE 1 — Picnic & Pilates -->
       <article class="event">
-        <div class="event-banner ev-picnic">Sunday Pilates &amp; Matcha</div>
+        <div class="event-banner ev-picnic">Picnic &amp; Pilates</div>
         <div class="event-body">
           <span class="tag">Most popular</span>
           <div class="event-meta">
-            <span>&#128197; Every Sunday</span>
-            <span>&#128340; 9:30am</span>
-            <span>&#128205; Studio + lawn</span>
+            <span>&#128197; Every 2 weeks</span>
+            <span>&#128340; Sundays</span>
+            <span>&#128205; From 12 Jul</span>
           </div>
-          <p>Our signature Sunday. An all-levels flow followed by ceremonial matcha and good company. The easy, feel-good reset.</p>
+          <p>Our signature gathering &mdash; an all-levels pilates flow followed by a relaxed picnic and good company. Fortnightly on Sundays, everyone welcome.</p>
           <div class="event-foot">
-            <div class="price">&pound;28 <small>/ person</small></div>
-            <a class="book-btn" href="#" data-package="sunday">See available dates <span class="arrow">&rarr;</span></a>
+            <div class="price">&pound;15 <small>/ person</small></div>
+            <a class="book-btn" href="#" data-package="pilates">See available dates <span class="arrow">&rarr;</span></a>
           </div>
         </div>
       </article>
 
-      <!-- PACKAGE 2 -->
+      <!-- PACKAGE 2 — Pilates with a View -->
       <article class="event">
-        <div class="event-banner ev-pilates">Charity Event</div>
-        <div class="event-body">
-          <span class="tag">Fundraiser</span>
-          <div class="event-meta">
-            <span>&#128197; Date TBC</span>
-            <span>&#128205; All welcome</span>
-          </div>
-          <p>A feel-good fundraiser bringing the community together for movement, matcha and connection &mdash; with proceeds going to a cause close to our hearts. Come move, give back, and meet good people.</p>
-          <div class="event-foot">
-            <div class="price">From &pound;&mdash; <small>&middot; for charity</small></div>
-            <a class="book-btn" href="#" data-package="charity">See available dates <span class="arrow">&rarr;</span></a>
-          </div>
-        </div>
-      </article>
-
-      <!-- PACKAGE 3 -->
-      <article class="event">
-        <div class="event-banner ev-social">Rooftop Pilates with a View</div>
+        <div class="event-banner ev-social">Pilates with a View</div>
         <div class="event-body">
           <span class="tag">Premium</span>
           <div class="event-meta">
-            <span>&#128197; Monthly</span>
-            <span>&#128340; 6:00pm</span>
+            <span>&#128197; Coming end of July</span>
+            <span>&#128340; 9am&ndash;11am</span>
             <span>&#128205; Rooftop</span>
           </div>
-          <p>Pilates on a rooftop with skyline views, followed by food and drinks. Our most special gathering &mdash; limited spots.</p>
+          <p>Pilates on a rooftop with skyline views, followed by food and drinks. Our most special gathering &mdash; sign-ups open end of July, click to register your interest.</p>
           <div class="event-foot">
-            <div class="price">&pound;&mdash; <small>· food included</small></div>
-            <a class="book-btn" href="#" data-package="rooftop">See available dates <span class="arrow">&rarr;</span></a>
+            <div class="price">&pound;50 <small>/ person</small></div>
+            <a class="book-btn" href="#" data-package="rooftop">Sign up <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PACKAGE 3 — Charity Event -->
+      <article class="event">
+        <div class="event-banner ev-pilates">Charity Event</div>
+        <div class="event-body">
+          <span class="tag">Coming soon</span>
+          <div class="event-meta">
+            <span>&#128197; Coming soon</span>
+            <span>&#128205; All welcome</span>
+          </div>
+          <p>A feel-good fundraiser bringing the community together for movement and connection &mdash; pay what you feel, with proceeds going to a cause close to our hearts. Details coming soon.</p>
+          <div class="event-foot">
+            <div class="price">Coming soon</div>
+            <a class="book-btn" href="#" data-package="charity">See available dates <span class="arrow">&rarr;</span></a>
           </div>
         </div>
       </article>
@@ -362,7 +362,7 @@
       <p>From booking to your first deep breath &mdash; here's the flow.</p>
     </div>
     <div class="steps-grid">
-      <div class="step"><span class="n">01</span><h3>Pick a package</h3><p>Choose the experience you're after &mdash; Sunday pilates, rooftop, or more.</p></div>
+      <div class="step"><span class="n">01</span><h3>Pick a package</h3><p>Choose the experience you're after &mdash; picnic &amp; pilates, rooftop, and more.</p></div>
       <div class="step"><span class="n">02</span><h3>Book securely</h3><p>Reserve your spot with a quick, secure card checkout powered by Stripe.</p></div>
       <div class="step"><span class="n">03</span><h3>Check your inbox</h3><p>You'll get a confirmation with the exact location, timing and what to bring.</p></div>
       <div class="step"><span class="n">04</span><h3>Show up &amp; unwind</h3><p>Arrive as you are. We've handled the rest &mdash; just be present and enjoy.</p></div>
@@ -482,38 +482,37 @@
      spots-per-session — Stripe then auto-closes a date once it's full.
   ===================================================================== */
   var PACKAGES={
-    sunday:{
-      title:'Sunday Pilates & Matcha',
-      sub:'Every Sunday · 9:30am · Studio + lawn · £28 per person',
-      price:'£28', time:'9:30am',
-      stripe:'REPLACE_WITH_STRIPE_LINK',
-      recurring:'sunday', count:8
+    pilates:{
+      title:'Picnic & Pilates',
+      sub:'Fortnightly on Sundays · from 12 July · £15 per person',
+      price:'£15', time:'',
+      stripe:'https://buy.stripe.com/00waEYfaY18vejQbUm14400',
+      recurring:'fortnightly', anchor:'2026-07-12', count:8
     },
-    charity:{
-      title:'Charity Event',
-      sub:'A community fundraiser — dates coming soon.',
-      price:'', time:'',
+    rooftop:{
+      title:'Pilates with a View',
+      sub:'Rooftop pilates & food · 9am–11am · sign-ups open end of July.',
+      price:'£50', time:'',
       stripe:'REPLACE_WITH_STRIPE_LINK',
       dates:[]
     },
-    rooftop:{
-      title:'Rooftop Pilates with a View',
-      sub:'Monthly · 6:00pm · Rooftop · food included',
-      price:'', time:'6:00pm',
+    charity:{
+      title:'Charity Event',
+      sub:'A pay-what-you-feel fundraiser — coming soon.',
+      price:'', time:'',
       stripe:'REPLACE_WITH_STRIPE_LINK',
-      dates:[
-        { iso:'2026-07-18', label:'Sat 18 Jul', tag:'Limited spots' },
-        { iso:'2026-08-15', label:'Sat 15 Aug', tag:'Limited spots' }
-      ]
+      dates:[]
     }
   };
 
-  function nextSundays(n){
-    var out=[], d=new Date(); d.setHours(0,0,0,0);
-    var add=(7-d.getDay())%7; if(add===0) add=7;     // next Sunday (skip today)
-    d.setDate(d.getDate()+add);
+  function isoLocal(x){ return x.getFullYear()+'-'+('0'+(x.getMonth()+1)).slice(-2)+'-'+('0'+x.getDate()).slice(-2); }
+  function fortnightly(anchorISO, n){
+    var p=anchorISO.split('-'), d=new Date(+p[0], +p[1]-1, +p[2]);
+    var today=new Date(); today.setHours(0,0,0,0);
+    while(d < today){ d.setDate(d.getDate()+14); }   // roll forward to first upcoming date
     var fmt=new Intl.DateTimeFormat('en-GB',{weekday:'short',day:'numeric',month:'short'});
-    for(var i=0;i<n;i++){ var dd=new Date(d); out.push({iso:dd.toISOString().slice(0,10),label:fmt.format(dd)}); d.setDate(d.getDate()+7); }
+    var out=[];
+    for(var i=0;i<n;i++){ var dd=new Date(d); out.push({iso:isoLocal(dd),label:fmt.format(dd)}); d.setDate(d.getDate()+14); }
     return out;
   }
 
@@ -525,7 +524,7 @@
     document.getElementById('modalSub').textContent=p.sub||'';
     var list=document.getElementById('dateList'); list.innerHTML='';
     var dates=p.dates||[];
-    if(p.recurring==='sunday') dates=nextSundays(p.count||8);
+    if(p.recurring==='fortnightly') dates=fortnightly(p.anchor,p.count||8);
     if(!dates.length){
       list.innerHTML='<p class="modal-empty">Dates coming soon.<br>Follow <a href="https://www.instagram.com/balanced.social/" target="_blank" rel="noopener" style="color:var(--burgundy);font-weight:600">@balanced.social</a> to be first to know.</p>';
     }

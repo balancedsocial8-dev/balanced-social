@@ -132,6 +132,9 @@
   .book-btn .arrow{transition:transform .2s}
   .book-btn:hover .arrow{transform:translateX(4px)}
   .tag{position:absolute;top:16px;right:16px;background:#fff;color:var(--burgundy);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;padding:6px 13px;border-radius:100px;font-weight:700;z-index:2;box-shadow:0 3px 10px -3px rgba(0,0,0,.3)}
+  .tag.soldout{background:var(--ink);color:#fff}
+  .book-btn.soldout{background:transparent;color:var(--ink-soft);border:1.5px solid var(--line);cursor:not-allowed;box-shadow:none;pointer-events:none}
+  .book-btn.soldout:hover{background:transparent;transform:none}
   .rain-note{text-align:center;margin-top:44px;color:var(--ink-soft);font-size:15px}
   .rain-note span{background:var(--clay);padding:3px 10px;border-radius:8px}
 
@@ -322,16 +325,16 @@
       <article class="event">
         <div class="event-banner ev-social">Pilates with a View</div>
         <div class="event-body">
-          <span class="tag">Premium</span>
+          <span class="tag soldout">Sold out</span>
           <div class="event-meta">
             <span>&#128197; Sat 25 Jul</span>
             <span>&#128340; 9am&ndash;11am</span>
             <span>&#128205; Rooftop</span>
           </div>
-          <p>Treat yourself to an exclusive morning of mindful movement followed by a rooftop brunch. Space is limited &mdash; reserve your mat today.</p>
+          <p>This one has completely sold out &mdash; thank you! Follow <a href="https://www.instagram.com/balanced.social/" target="_blank" rel="noopener" style="color:var(--burgundy);font-weight:600">@balanced.social</a> to be first to hear when the next rooftop session drops.</p>
           <div class="event-foot">
             <div class="price">&pound;65 <small>/ person</small></div>
-            <a class="book-btn" href="#" data-package="rooftop">See available dates <span class="arrow">&rarr;</span></a>
+            <span class="book-btn soldout">Sold out</span>
           </div>
         </div>
       </article>
@@ -496,11 +499,11 @@
     },
     rooftop:{
       title:'Pilates with a View',
-      sub:'Rooftop pilates & brunch · 9am–11am · £65 per person',
+      sub:'Rooftop pilates & brunch · 9am–11am · SOLD OUT',
       price:'£65', time:'9am–11am',
-      stripe:'https://buy.stripe.com/9B6dRa6Es04r6RobUm14401',
+      stripe:'', /* SOLD OUT — Stripe payment link removed. Also deactivate the old link in the Stripe dashboard. */
       dates:[
-        { iso:'2026-07-25', label:'Sat 25 Jul', tag:'Limited spots' }
+        { iso:'2026-07-25', label:'Sat 25 Jul', soldOut:true }
       ]
     },
     charity:{

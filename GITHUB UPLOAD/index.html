@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Balanced Social — London's Wellness Social Club</title>
+<meta name="description" content="Balanced Social brings together movement, beautiful spaces and genuine connection. Rooftop mornings, slow Sunday picnics and gatherings worth dressing up for.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,340;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F8F6F2;
+    --ink:#272321;
+    --ink-60:rgba(39,35,33,.62);
+    --ink-40:rgba(39,35,33,.42);
+    --stone:#CFC5B8;
+    --sage:#DEE4D9;
+    --clay:#D9B8AF;
+    --sand:#E8DDCF;
+    --espresso:#2E2926;
+    --burgundy:#700C0C;
+    --burgundy-deep:#570909;
+    --wine:#8A241E;
+    --wine-light:#9C332B;
+    --wine-deep:#701A15;
+    --hairline:rgba(46,41,38,.14);
+    --ease:cubic-bezier(.22,.61,.21,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Instrument Sans',system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.7;
+    font-size:16.5px;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:340;line-height:1.06;letter-spacing:-.015em}
+  a{color:inherit;text-decoration:none}
+  img{display:block}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 clamp(22px,5vw,64px)}
+  .narrow{max-width:820px;margin:0 auto}
+
+  ::selection{background:var(--sand);color:var(--ink)}
+
+  /* ---------- Micro label ---------- */
+  .label{
+    display:inline-block;font-size:11px;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--ink-60);font-weight:500;margin-bottom:28px;
+  }
+  .label.wine{color:var(--burgundy)}
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:12px;
+    padding:19px 38px;border-radius:999px;font-size:12.5px;font-weight:600;
+    letter-spacing:.18em;text-transform:uppercase;
+    transition:transform .5s var(--ease),background .35s,color .35s,border-color .35s,box-shadow .5s var(--ease);
+    cursor:pointer;border:none;font-family:inherit;
+  }
+  .btn .arrow{transition:transform .45s var(--ease);font-family:'Fraunces',serif;font-size:15px;letter-spacing:0}
+  .btn:hover .arrow{transform:translateX(6px)}
+  .btn-primary{
+    background:linear-gradient(140deg,var(--wine-light),var(--wine) 55%,var(--wine-deep));
+    color:#FBF3EA;box-shadow:0 14px 30px -16px rgba(112,26,21,.5),inset 0 1px 0 rgba(255,255,255,.16);
+  }
+  .btn-primary:hover{
+    background:linear-gradient(140deg,var(--wine),var(--wine-deep));
+    transform:translateY(-2px);box-shadow:0 20px 38px -16px rgba(112,26,21,.55),inset 0 1px 0 rgba(255,255,255,.14);
+  }
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid rgba(46,41,38,.3)}
+  .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .btn-ghost.on-photo{color:#F8F6F2;border-color:rgba(248,246,242,.55)}
+  .btn-ghost.on-photo:hover{border-color:#F8F6F2;background:rgba(248,246,242,.08)}
+
+  .text-link{
+    display:inline-flex;align-items:center;gap:10px;font-size:14px;letter-spacing:.14em;
+    text-transform:uppercase;font-weight:500;color:var(--ink);
+    padding-bottom:6px;border-bottom:1px solid var(--hairline);transition:border-color .35s,color .35s;
+  }
+  .text-link .arrow{transition:transform .45s var(--ease)}
+  .text-link:hover{border-color:var(--burgundy);color:var(--burgundy)}
+  .text-link:hover .arrow{transform:translateX(5px)}
+
+  /* ---------- Nav ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:90;
+    transition:background .5s,border-color .5s,backdrop-filter .5s;
+    border-bottom:1px solid transparent;
+  }
+  header.solid{background:rgba(248,246,242,.88);backdrop-filter:blur(14px);border-bottom-color:var(--hairline)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:92px}
+  .logo-img{height:52px;width:auto;transition:filter .5s}
+  header:not(.solid) .logo-img{filter:brightness(0) invert(1)}
+  .nav-links{display:flex;gap:42px;align-items:center}
+  .nav-links a:not(.btn){
+    font-size:13px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;
+    color:var(--ink-60);transition:color .3s;
+  }
+  header:not(.solid) .nav-links a:not(.btn){color:rgba(248,246,242,.85)}
+  .nav-links a:not(.btn):hover{color:var(--ink)}
+  header:not(.solid) .nav-links a:not(.btn):hover{color:#fff}
+  .nav-links .btn{padding:14px 26px;font-size:11px}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;z-index:100;width:40px;height:40px;position:relative}
+  .nav-toggle span{position:absolute;left:8px;right:8px;height:1.5px;background:var(--ink);transition:all .4s var(--ease)}
+  header:not(.solid) .nav-toggle span{background:#F8F6F2}
+  .nav-toggle span:nth-child(1){top:14px}
+  .nav-toggle span:nth-child(2){top:24px}
+  body.nav-open .nav-toggle span{background:var(--ink)!important}
+  body.nav-open .nav-toggle span:nth-child(1){top:19px;transform:rotate(45deg)}
+  body.nav-open .nav-toggle span:nth-child(2){top:19px;transform:rotate(-45deg)}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;height:100svh;min-height:640px;display:flex;align-items:flex-end;overflow:hidden}
+  .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%;
+    animation:heroDrift 18s var(--ease) both}
+  @keyframes heroDrift{from{transform:scale(1.08)}to{transform:scale(1)}}
+  .hero-veil{position:absolute;inset:0;background:
+    linear-gradient(to right,rgba(39,35,33,.5),rgba(39,35,33,.18) 46%,transparent 68%),
+    linear-gradient(to bottom,rgba(39,35,33,.3),transparent 34%,transparent 48%,rgba(39,35,33,.72) 100%)}
+  .hero-content{position:relative;z-index:2;width:100%;padding-bottom:clamp(56px,9vh,110px);color:#F8F6F2}
+  .hero .label{color:rgba(248,246,242,.75);margin-bottom:24px;opacity:0;animation:riseIn 1.2s var(--ease) .3s forwards}
+  .hero h1{
+    font-size:clamp(46px,7.2vw,104px);color:#F8F6F2;max-width:13ch;
+    opacity:0;animation:riseIn 1.4s var(--ease) .5s forwards;
+  }
+  .hero h1 em{font-style:italic;font-weight:300}
+  .hero p{
+    max-width:520px;margin:30px 0 42px;font-size:17.5px;color:rgba(248,246,242,.88);line-height:1.75;
+    opacity:0;animation:riseIn 1.4s var(--ease) .8s forwards;
+  }
+  .hero-cta{display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:riseIn 1.4s var(--ease) 1.05s forwards}
+  @keyframes riseIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+  .hero-scroll{
+    position:absolute;right:clamp(22px,5vw,64px);bottom:clamp(56px,9vh,110px);z-index:2;
+    color:rgba(248,246,242,.65);font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+    writing-mode:vertical-rl;display:flex;align-items:center;gap:14px;
+    opacity:0;animation:riseIn 1.4s var(--ease) 1.4s forwards;
+  }
+  .hero-scroll::after{content:'';width:1px;height:56px;background:linear-gradient(to bottom,rgba(248,246,242,.7),transparent);animation:drop 2.4s var(--ease) infinite}
+  @keyframes drop{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+  /* ---------- Montage marquee ---------- */
+  .montage{padding:clamp(48px,6vw,84px) 0 0;overflow:hidden}
+  .marquee{display:flex;gap:20px;width:max-content;animation:glide 70s linear infinite}
+  .marquee:hover{animation-play-state:paused}
+  .marquee img{height:clamp(300px,38vw,460px);width:auto;border-radius:6px;object-fit:cover}
+  @keyframes glide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ---------- Sections ---------- */
+  section{padding:clamp(68px,8.5vw,116px) 0}
+
+  /* ---------- Story ---------- */
+  .story-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(48px,7vw,110px);align-items:center}
+  .story-copy h2{font-size:clamp(36px,4.6vw,62px);margin-bottom:34px}
+  .story-copy h2 em{font-style:italic;font-weight:300;color:var(--burgundy)}
+  .story-copy p{color:var(--ink-60);margin-bottom:22px;max-width:52ch}
+  .story-copy .credo{
+    font-family:'Fraunces',serif;font-size:21px;font-style:italic;color:var(--ink);
+    margin-top:36px;padding-top:36px;border-top:1px solid var(--hairline);line-height:1.5;
+  }
+  .story-photo{position:relative}
+  .story-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px}
+  .story-photo::after{
+    content:'';position:absolute;top:26px;left:-26px;right:26px;bottom:-26px;
+    border:1px solid var(--stone);border-radius:6px;z-index:-1;
+  }
+
+  /* ---------- Experiences ---------- */
+  .exp-head{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-bottom:clamp(40px,5vw,64px);flex-wrap:wrap}
+  .exp-head h2{font-size:clamp(38px,5vw,68px);max-width:14ch}
+  .exp-head p{color:var(--ink-60);max-width:38ch;padding-bottom:10px}
+  .exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(26px,3.4vw,48px)}
+  .exp{display:flex;flex-direction:column;cursor:pointer}
+  .exp-img{position:relative;overflow:hidden;border-radius:6px;aspect-ratio:4/5;background:var(--sand)}
+  .exp-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.6s var(--ease)}
+  .exp:hover .exp-img img{transform:scale(1.045)}
+  .exp-tag{
+    position:absolute;top:18px;left:18px;background:rgba(248,246,242,.92);backdrop-filter:blur(6px);
+    font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--ink);
+    padding:8px 16px;border-radius:999px;
+  }
+  .exp-tag.dark{background:rgba(46,41,38,.82);color:#F8F6F2}
+  .exp-body{padding:30px 6px 0}
+  .exp-body h3{font-size:clamp(24px,2.3vw,30px);margin-bottom:12px}
+  .exp-body p{font-size:15.5px;color:var(--ink-60);margin-bottom:24px;max-width:40ch}
+  .exp-note{text-align:center;margin-top:clamp(40px,5vw,60px);color:var(--ink-40);font-size:14px;letter-spacing:.02em}
+
+  /* ---------- Interlude ---------- */
+  .interlude{position:relative;height:clamp(480px,68vh,720px);display:flex;align-items:center;justify-content:center;overflow:hidden;padding:0}
+  .interlude img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .interlude::after{content:'';position:absolute;inset:0;background:rgba(39,35,33,.38)}
+  .interlude-quote{position:relative;z-index:2;text-align:center;color:#F8F6F2;padding:0 24px}
+  .interlude-quote .label{color:rgba(248,246,242,.7)}
+  .interlude-quote h2{font-size:clamp(34px,5vw,64px);font-style:italic;font-weight:300;max-width:18ch;margin:0 auto}
+
+  /* ---------- Moments ---------- */
+  .moments-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.6vw,36px)}
+  .moment{overflow:hidden;border-radius:6px}
+  .moment img{width:100%;height:100%;aspect-ratio:3/4;object-fit:cover;transition:transform 1.6s var(--ease)}
+  .moment:hover img{transform:scale(1.04)}
+  .moments-foot{text-align:center;margin-top:clamp(40px,5vw,60px)}
+
+  /* ---------- FAQ ---------- */
+  .faq-sec{background:var(--sand);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
+  .faq-sec .sec-head{text-align:center;margin-bottom:clamp(32px,4vw,48px)}
+  .faq-sec h2{font-size:clamp(30px,3.8vw,46px)}
+  .faq{border-bottom:1px solid rgba(46,41,38,.16)}
+  .faq summary{
+    cursor:pointer;list-style:none;padding:30px 0;font-family:'Fraunces',serif;font-size:20px;font-weight:400;
+    display:flex;justify-content:space-between;align-items:center;gap:24px;transition:color .3s;
+  }
+  .faq summary:hover{color:var(--burgundy)}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:'+';font-family:'Fraunces',serif;font-size:26px;font-weight:300;color:var(--burgundy);transition:transform .4s var(--ease);flex-shrink:0}
+  .faq[open] summary::after{transform:rotate(45deg)}
+  .faq p{padding:0 0 30px;color:var(--ink-60);max-width:62ch}
+
+  /* ---------- Manifesto ---------- */
+  .manifesto{text-align:center}
+  .manifesto .line{
+    font-family:'Fraunces',serif;font-weight:340;letter-spacing:-.015em;line-height:1.15;
+  }
+  .manifesto .small{font-size:clamp(24px,3vw,38px);color:var(--ink-60)}
+  .manifesto .big{font-size:clamp(38px,5.6vw,74px);margin:10px 0}
+  .manifesto .words{
+    display:flex;gap:clamp(20px,4vw,48px);justify-content:center;align-items:baseline;
+    margin:clamp(40px,5vw,64px) 0;flex-wrap:wrap;
+  }
+  .manifesto .words span{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:clamp(26px,3.4vw,44px);color:var(--ink);
+  }
+  .manifesto .words .dot{width:5px;height:5px;border-radius:50%;background:var(--clay);align-self:center}
+  .manifesto .closing{font-size:clamp(30px,4.2vw,54px);font-style:italic;color:var(--burgundy);margin-bottom:clamp(44px,5vw,60px)}
+
+  /* ---------- Join ---------- */
+  .join{background:var(--espresso);color:var(--bg);text-align:center}
+  .join .label{color:var(--clay)}
+  .join h2{font-size:clamp(32px,4.4vw,52px);color:var(--bg);max-width:20ch;margin:0 auto 18px}
+  .join p{color:rgba(248,246,242,.62);max-width:44ch;margin:0 auto 44px}
+  .signup-form{display:flex;gap:12px;max-width:480px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+  .signup-form input{
+    flex:1;min-width:240px;padding:16px 26px;border-radius:999px;border:1px solid rgba(248,246,242,.28);
+    background:transparent;font-family:inherit;font-size:15px;color:var(--bg);transition:border-color .3s;
+  }
+  .signup-form input::placeholder{color:rgba(248,246,242,.4)}
+  .signup-form input:focus{outline:none;border-color:var(--clay)}
+  .signup-done{font-family:'Fraunces',serif;font-style:italic;font-size:20px;color:var(--clay);padding:14px 0}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--espresso);color:var(--bg);padding:0 0 44px}
+  .foot-rule{border-top:1px solid rgba(248,246,242,.14);margin-bottom:56px}
+  .foot-grid{display:flex;justify-content:space-between;align-items:flex-start;gap:48px;flex-wrap:wrap;margin-bottom:64px}
+  .foot-logo{height:60px;width:auto;filter:brightness(0) invert(.96)}
+  .foot-tag{color:rgba(248,246,242,.55);font-size:14.5px;max-width:280px;margin-top:20px;line-height:1.7}
+  .foot-col h4{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:rgba(248,246,242,.45);margin-bottom:22px;font-weight:500}
+  .foot-col a{display:block;color:rgba(248,246,242,.8);font-size:15px;margin-bottom:13px;transition:color .3s}
+  .foot-col a:hover{color:var(--clay)}
+  .foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:rgba(248,246,242,.4)}
+
+  /* ---------- Modal ---------- */
+  .modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:24px}
+  .modal.open{display:flex}
+  .modal-backdrop{position:absolute;inset:0;background:rgba(39,35,33,.55);backdrop-filter:blur(6px)}
+  .modal-card{
+    position:relative;z-index:1;background:var(--bg);width:100%;max-width:520px;max-height:86vh;overflow:auto;
+    border-radius:14px;padding:44px 40px 36px;animation:pop .5s var(--ease);
+  }
+  @keyframes pop{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+  .modal-close{
+    position:absolute;top:20px;right:20px;width:40px;height:40px;border:1px solid var(--hairline);border-radius:50%;
+    background:transparent;font-size:18px;cursor:pointer;color:var(--ink);line-height:1;transition:border-color .3s;
+  }
+  .modal-close:hover{border-color:var(--ink)}
+  .modal-eyebrow{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--burgundy);font-weight:600}
+  .modal-card h3{font-size:30px;margin:12px 0 6px}
+  .modal-sub{color:var(--ink-60);font-size:14.5px;margin-bottom:28px}
+  .date-row{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 2px;
+    border-bottom:1px solid var(--hairline);transition:background .3s;
+  }
+  .date-row:first-of-type{border-top:1px solid var(--hairline)}
+  .date-info{display:flex;flex-direction:column;gap:2px}
+  .date-info .d{font-family:'Fraunces',serif;font-size:17.5px;font-weight:400}
+  .date-info .m{font-size:12.5px;color:var(--ink-40);letter-spacing:.04em}
+  .date-book{
+    background:linear-gradient(140deg,var(--wine-light),var(--wine-deep));color:#FBF3EA;border:none;padding:11px 24px;border-radius:999px;
+    font-size:13.5px;font-weight:500;letter-spacing:.03em;cursor:pointer;white-space:nowrap;transition:opacity .3s,filter .3s;font-family:inherit;
+  }
+  .date-book:hover{filter:brightness(.9)}
+  .date-book.soldout{background:transparent;color:var(--ink-40);border:1px solid var(--hairline);cursor:not-allowed}
+  .modal-empty{color:var(--ink-60);padding:8px 0 22px;font-size:15px;line-height:1.7}
+  .modal-foot{margin-top:20px;font-size:12.5px;color:var(--ink-40);text-align:center}
+  .modal-foot a{color:var(--burgundy);font-weight:500}
+  .notify-form{display:flex;flex-direction:column;gap:12px;margin-top:4px}
+  .notify-input{padding:15px 22px;border:1px solid var(--hairline);border-radius:999px;font-family:inherit;font-size:15px;background:#fff}
+  .notify-input:focus{outline:none;border-color:var(--burgundy)}
+  .notify-btn{width:100%;justify-content:center;display:flex}
+  .notify-done{text-align:center;font-family:'Fraunces',serif;font-style:italic;color:var(--burgundy);font-size:18px;padding:20px 0}
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.12s}
+  .reveal.d2{transition-delay:.24s}
+  .reveal.d3{transition-delay:.36s}
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+    .reveal{opacity:1;transform:none}
+  }
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:960px){
+    .story-grid{grid-template-columns:1fr;gap:64px}
+    .story-photo{order:-1}
+    .story-photo::after{display:none}
+    .exp-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto}
+    .moments-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto}
+    .moment:nth-child(2){margin-top:0}
+  }
+  @media(max-width:820px){
+    .nav-links{
+      position:fixed;inset:0;background:var(--bg);flex-direction:column;justify-content:center;
+      gap:34px;transform:translateY(-102%);transition:transform .6s var(--ease);z-index:95;
+    }
+    .nav-links.open{transform:none}
+    .nav-links a:not(.btn){font-size:15px;color:var(--ink-60)!important}
+    .nav-toggle{display:block}
+    body.nav-open header{backdrop-filter:none!important;background:transparent!important;border-bottom-color:transparent!important}
+    body.nav-open .logo-img{filter:none!important;position:relative;z-index:100}
+    .hero h1{font-size:clamp(42px,11vw,60px)}
+    .hero-scroll{display:none}
+  }
+  @media(max-width:520px){
+    body{font-size:15.5px}
+    .hero p{font-size:15.5px;margin:24px 0 32px}
+    .hero-cta{flex-direction:column;width:100%}
+    .hero-cta .btn{width:100%;justify-content:center}
+    .marquee img{height:240px}
+    .marquee{gap:12px}
+    .exp-body{padding:22px 2px 0}
+    .story-photo::after{display:none}
+    .interlude{height:70svh;min-height:420px}
+    .modal-card{padding:36px 22px 26px;border-radius:12px}
+    .date-row{flex-wrap:wrap}
+    .signup-form .btn{width:100%;justify-content:center}
+    .foot-grid{gap:36px}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <nav class="wrap">
+    <a href="#top" class="logo" aria-label="Balanced Social">
+      <img src="images/logo.png" alt="Balanced Social" class="logo-img">
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#story">Our Story</a>
+      <a href="#experiences">Experiences</a>
+      <a href="#moments">Moments</a>
+      <a href="#faq">FAQ</a>
+      <a href="#experiences" class="btn btn-primary">Reserve your place</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span></button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top" style="padding:0">
+  <img src="images/hero.jpg" alt="Sunrise pilates beside the rooftop pool, London skyline beyond" class="hero-img">
+  <div class="hero-veil"></div>
+  <div class="wrap hero-content">
+    <span class="label">London's Wellness Social Club</span>
+    <h1>The balance you've been <em>looking for.</em></h1>
+    <p>Move your body. Meet incredible people. From rooftop mornings to slow Sunday picnics, Balanced Social brings together movement, connection and London's most beautiful spaces.</p>
+    <div class="hero-cta">
+      <a href="#experiences" class="btn btn-primary">Explore experiences <span class="arrow">&rarr;</span></a>
+      <a href="#join" class="btn btn-ghost on-photo">Join the community</a>
+    </div>
+  </div>
+  <span class="hero-scroll">Scroll</span>
+</section>
+
+<!-- MONTAGE -->
+<div class="montage" aria-hidden="true">
+  <div class="marquee">
+    <img src="images/connect.jpg" alt="">
+    <img src="images/movement.jpg" alt="">
+    <img src="images/brunch.jpg" alt="">
+    <img src="images/class.jpg" alt="">
+    <img src="images/spritz.jpg" alt="">
+    <img src="images/sunrise.jpg" alt="">
+    <img src="images/sunlit.jpg" alt="">
+    <img src="images/table.jpg" alt="">
+    <img src="images/picnic.jpg" alt="">
+    <img src="images/connect.jpg" alt="">
+    <img src="images/movement.jpg" alt="">
+    <img src="images/brunch.jpg" alt="">
+    <img src="images/class.jpg" alt="">
+    <img src="images/spritz.jpg" alt="">
+    <img src="images/sunrise.jpg" alt="">
+    <img src="images/sunlit.jpg" alt="">
+    <img src="images/table.jpg" alt="">
+    <img src="images/picnic.jpg" alt="">
+  </div>
+</div>
+
+<!-- STORY -->
+<section id="story">
+  <div class="wrap story-grid">
+    <div class="story-copy reveal">
+      <span class="label wine">Our Story</span>
+      <h2>Wellness is better <em>when shared.</em></h2>
+      <p>The best opportunities often begin with a conversation. Balanced Social was created around that simple belief — that moving well, slowing down and meeting good people belong together.</p>
+      <p>Every gathering is thoughtfully curated. Beautiful venues. Calm energy. No pressure. Our guests arrive as strangers and leave mid-conversation, planning the next one.</p>
+      <p class="credo">Come as you are. Leave feeling lighter.</p>
+    </div>
+    <div class="story-photo reveal d1">
+      <img src="images/brunch.jpg" alt="A reserved table set for brunch after class — sourdough, salmon and a Balanced Social gift bag">
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCES -->
+<section id="experiences" style="padding-top:0">
+  <div class="wrap">
+    <div class="exp-head reveal">
+      <div>
+        <span class="label wine">The Experiences</span>
+        <h2>Choose your kind of weekend.</h2>
+      </div>
+      <p>Each experience is limited to a small number of guests. Dates release quietly — reserve early.</p>
+    </div>
+    <div class="exp-grid">
+
+      <!-- Picnic Club -->
+      <article class="exp reveal" data-package="pilates" tabindex="0" role="button" aria-label="Reserve Picnic Club">
+        <div class="exp-img">
+          <span class="exp-tag">Signature</span>
+          <img src="images/picnic.jpg" alt="Guests gathered on picnic blankets in golden light">
+        </div>
+        <div class="exp-body">
+          <h3>Picnic Club</h3>
+          <p>Our signature Sunday gathering — an unhurried pilates flow, fresh food and slow conversations that run long past the last stretch.</p>
+          <span class="text-link">Reserve your place <span class="arrow">&rarr;</span></span>
+        </div>
+      </article>
+
+      <!-- Rooftop Reset -->
+      <article class="exp reveal d1" data-package="rooftop" tabindex="0" role="button" aria-label="Rooftop Reset — join the waitlist">
+        <div class="exp-img">
+          <span class="exp-tag dark">Fully reserved</span>
+          <img src="images/sunrise.jpg" alt="A sunrise class flowing together on the rooftop">
+        </div>
+        <div class="exp-body">
+          <h3>Rooftop Reset</h3>
+          <p>A sunrise pilates experience above London's skyline, followed by breakfast, pool access and mornings that feel like holidays.</p>
+          <span class="text-link">Join the waitlist <span class="arrow">&rarr;</span></span>
+        </div>
+      </article>
+
+      <!-- The Giving Series -->
+      <article class="exp reveal d2" data-package="charity" tabindex="0" role="button" aria-label="The Giving Series — be the first to know">
+        <div class="exp-img">
+          <span class="exp-tag">Coming soon</span>
+          <img src="images/class.jpg" alt="The whole class applauding together on the rooftop">
+        </div>
+        <div class="exp-body">
+          <h3>The Giving Series</h3>
+          <p>Movement in service of something bigger. A pay-what-you-feel gathering, with proceeds going to a cause close to our hearts.</p>
+          <span class="text-link">Be the first to know <span class="arrow">&rarr;</span></span>
+        </div>
+      </article>
+
+    </div>
+    <p class="exp-note reveal">If the weather turns, the gathering simply moves indoors — same morning, same feeling. Details always arrive by email.</p>
+  </div>
+</section>
+
+<!-- INTERLUDE -->
+<section class="interlude" id="moments-intro">
+  <img src="images/connect.jpg" alt="Guests deep in conversation on the rooftop terrace">
+  <div class="interlude-quote">
+    <span class="label">The Feeling</span>
+    <h2>"I didn't expect to leave with this many new friends."</h2>
+  </div>
+</section>
+
+<!-- MOMENTS -->
+<section id="moments">
+  <div class="wrap">
+    <div class="exp-head reveal">
+      <div>
+        <span class="label wine">Moments</span>
+        <h2>Sundays, as they should be.</h2>
+      </div>
+    </div>
+    <div class="moments-grid">
+      <div class="moment reveal"><img src="images/spritz.jpg" alt="Spritzes raised in the afternoon sun"></div>
+      <div class="moment reveal d1"><img src="images/sunlit.jpg" alt="A guest laughing over a drink on the terrace"></div>
+      <div class="moment reveal d2"><img src="images/table.jpg" alt="Guests around the table, London skyline behind"></div>
+    </div>
+    <div class="moments-foot reveal">
+      <a class="text-link" href="https://www.instagram.com/balanced.social/" target="_blank" rel="noopener">Follow along &mdash; @balanced.social <span class="arrow">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-sec" id="faq">
+  <div class="wrap narrow">
+    <div class="sec-head reveal">
+      <span class="label wine">Good to Know</span>
+      <h2>Questions, answered.</h2>
+    </div>
+    <div class="reveal d1">
+      <details class="faq"><summary>Do I need to be experienced to join?</summary><p>Not at all. Every session is all-levels and beginner-friendly — our instructors offer modifications so you can move at your own pace.</p></details>
+      <details class="faq"><summary>Can I come on my own?</summary><p>Most of our guests do. Every gathering is designed to feel warm from the moment you arrive — you'll leave having met a few good people.</p></details>
+      <details class="faq"><summary>What happens if it rains?</summary><p>Every outdoor gathering has a beautiful indoor backup. If the forecast turns, we move — same time, same feeling — and email you the updated location in advance.</p></details>
+      <details class="faq"><summary>What's included?</summary><p>It varies by experience, but typically your place, any equipment (like mats), and the food or drinks listed on the event. Everything you need is in your confirmation email.</p></details>
+      <details class="faq"><summary>What's your refund policy?</summary><p>Places are limited, so we ask for at least 48 hours' notice to offer a credit toward a future gathering. Reach out any time and we'll take care of it.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="wrap">
+    <p class="line small reveal">Not another fitness class.</p>
+    <p class="line big reveal d1">A different way to spend your weekend.</p>
+    <div class="words reveal d2">
+      <span>Move.</span><span class="dot"></span><span>Breathe.</span><span class="dot"></span><span>Connect.</span>
+    </div>
+    <p class="line closing reveal d2">The balance you've been looking for.</p>
+    <div class="reveal d3">
+      <a href="#experiences" class="btn btn-primary">Explore experiences <span class="arrow">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section class="join" id="join">
+  <div class="wrap">
+    <span class="label">The List</span>
+    <h2>Some gatherings are never announced publicly.</h2>
+    <p>Join the list for first access to new dates, guest-only gatherings and the occasional note worth opening.</p>
+    <form class="signup-form" id="joinForm">
+      <input type="email" name="email" placeholder="your@email.com" required>
+      <input type="hidden" name="source" value="homepage-join">
+      <button class="btn btn-primary" type="submit">Join</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-rule"></div>
+    <div class="foot-grid">
+      <div>
+        <img src="images/logo.png" alt="Balanced Social" class="foot-logo">
+        <p class="foot-tag">London's wellness social club. Movement, beautiful spaces and genuine connection.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <a href="#story">Our Story</a>
+        <a href="#experiences">Experiences</a>
+        <a href="#moments">Moments</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h4>Connect</h4>
+        <a href="https://www.instagram.com/balanced.social/" target="_blank" rel="noopener">Instagram</a>
+        <a href="mailto:balanced.social8@gmail.com">Email us</a>
+        <a href="#join">The List</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; <span id="yr"></span> Balanced Social. All rights reserved.</span>
+      <span>Payments secured by Stripe</span>
+    </div>
+  </div>
+</footer>
+
+<!-- DATE PICKER MODAL -->
+<div class="modal" id="dateModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-card">
+    <button class="modal-close" data-close aria-label="Close">&times;</button>
+    <span class="modal-eyebrow">Reserve your place</span>
+    <h3 id="modalTitle">Experience</h3>
+    <p class="modal-sub" id="modalSub"></p>
+    <div id="dateList"></div>
+    <p class="modal-foot">Secure checkout &middot; your confirmation email includes the location and what to bring.</p>
+  </div>
+</div>
+
+<script>
+  document.getElementById('yr').textContent=new Date().getFullYear();
+
+  // Nav
+  var hdr=document.getElementById('siteHeader');
+  function onScroll(){ hdr.classList.toggle('solid', window.scrollY>window.innerHeight*0.75); }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  var t=document.getElementById('navToggle'),l=document.getElementById('navLinks');
+  t.addEventListener('click',function(){l.classList.toggle('open');document.body.classList.toggle('nav-open');});
+  l.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){l.classList.remove('open');document.body.classList.remove('nav-open');});});
+
+  // Reveal on scroll
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  /* =====================================================================
+     BOOKING CONFIG — edit this block to manage your experiences & dates.
+     Prices are intentionally NOT shown on the cards — only here, once a
+     guest has chosen an experience.
+     - recurring:'fortnightly': dates auto-generate from the anchor Sunday.
+     - Otherwise add dates manually to the `dates` array:
+       { iso:'YYYY-MM-DD', label:'Sat 18 Jul', tag:'Limited places', soldOut:false }
+     Capacity tip: in Stripe, set each Payment Link's usage limit to your
+     places-per-session — Stripe then auto-closes a date once it's full.
+  ===================================================================== */
+  var PACKAGES={
+    pilates:{
+      title:'Picnic Club',
+      sub:'Fortnightly on Sundays · £15 per guest',
+      price:'£15', time:'',
+      stripe:'https://buy.stripe.com/00waEYfaY18vejQbUm14400',
+      recurring:'fortnightly', anchor:'2026-07-12', count:8
+    },
+    rooftop:{
+      title:'Rooftop Reset',
+      sub:'Sunrise pilates, breakfast & pool access · £65 per guest',
+      price:'£65', time:'9am–11am',
+      stripe:'', /* SOLD OUT — Stripe payment link removed. Also deactivate the old link in the Stripe dashboard. */
+      soldOutNote:'The last Rooftop Reset sold out. Leave your email and you’ll be first to hear when the next date releases.',
+      dates:[]
+    },
+    charity:{
+      title:'The Giving Series',
+      sub:'Pay what you feel — every contribution goes further together.',
+      price:'', time:'',
+      stripe:'REPLACE_WITH_STRIPE_LINK',
+      soldOutNote:'Dates release soon. Leave your email and we’ll tell you the moment reservations open.',
+      dates:[]
+    }
+  };
+
+  function isoLocal(x){ return x.getFullYear()+'-'+('0'+(x.getMonth()+1)).slice(-2)+'-'+('0'+x.getDate()).slice(-2); }
+  function fortnightly(anchorISO, n){
+    var p=anchorISO.split('-'), d=new Date(+p[0], +p[1]-1, +p[2]);
+    var today=new Date(); today.setHours(0,0,0,0);
+    while(d < today){ d.setDate(d.getDate()+14); }
+    var fmt=new Intl.DateTimeFormat('en-GB',{weekday:'short',day:'numeric',month:'short'});
+    var out=[];
+    for(var i=0;i<n;i++){ var dd=new Date(d); out.push({iso:isoLocal(dd),label:fmt.format(dd)}); d.setDate(d.getDate()+14); }
+    return out;
+  }
+
+  var modal=document.getElementById('dateModal');
+  function closeModal(){ modal.classList.remove('open'); document.body.style.overflow=''; }
+
+  /* Waitlist / notify capture (Formspree) */
+  var SIGNUP_FORM='https://formspree.io/f/xlgyvgpd';
+  var SIGNUP_EMAIL='balanced.social8@gmail.com';
+  function handleNotify(e,key){
+    e.preventDefault();
+    var form=e.target;
+    var email=(form.querySelector('input[type=email]')||{}).value||'';
+    var pkg=(PACKAGES[key]&&PACKAGES[key].title)||'an experience';
+    if(SIGNUP_FORM){
+      try{ fetch(SIGNUP_FORM,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(form)}); }catch(_){}
+    } else {
+      window.location.href='mailto:'+SIGNUP_EMAIL+'?subject='+encodeURIComponent('Waitlist: '+pkg)+'&body='+encodeURIComponent('Hi! Please let me know when '+pkg+' opens. My email: '+email);
+    }
+    form.outerHTML='<p class="notify-done">You’re on the list. We’ll be in touch.</p>';
+    return false;
+  }
+  window.handleNotify=handleNotify;
+
+  function openPackage(key){
+    var p=PACKAGES[key]; if(!p) return;
+    document.getElementById('modalTitle').textContent=p.title;
+    document.getElementById('modalSub').textContent=p.sub||'';
+    var list=document.getElementById('dateList'); list.innerHTML='';
+    var dates=p.dates||[];
+    if(p.recurring==='fortnightly') dates=fortnightly(p.anchor,p.count||8);
+    if(!dates.length){
+      list.innerHTML=''+
+        '<p class="modal-empty">'+(p.soldOutNote||'Dates release soon — leave your email and we’ll tell you the moment they do.')+'</p>'+
+        '<form class="notify-form" onsubmit="return handleNotify(event,\''+key+'\')">'+
+          '<input type="hidden" name="package" value="'+(p.title||'')+'">'+
+          '<input type="email" name="email" required placeholder="your@email.com" class="notify-input">'+
+          '<button type="submit" class="date-book notify-btn">Keep me posted &rarr;</button>'+
+        '</form>'+
+        '<p class="modal-foot" style="margin-top:16px">Or follow <a href="https://www.instagram.com/balanced.social/" target="_blank" rel="noopener">@balanced.social</a>.</p>';
+    }
+    dates.forEach(function(dt){
+      var row=document.createElement('div'); row.className='date-row';
+      var info=document.createElement('div'); info.className='date-info';
+      var meta = dt.soldOut ? '<span class="m">Fully reserved</span>' : (dt.tag ? '<span class="m">'+dt.tag+'</span>' : (p.time?'<span class="m">'+p.time+'</span>':''));
+      info.innerHTML='<span class="d">'+dt.label+(p.time?' · '+p.time:'')+'</span>'+meta;
+      row.appendChild(info);
+      var btn=document.createElement(dt.soldOut?'span':'a');
+      btn.className='date-book'+(dt.soldOut?' soldout':'');
+      btn.textContent=dt.soldOut?'Fully reserved':(p.price?'Reserve · '+p.price:'Reserve');
+      if(!dt.soldOut){
+        if(p.stripe && p.stripe!=='REPLACE_WITH_STRIPE_LINK'){
+          btn.href=p.stripe+(p.stripe.indexOf('?')>-1?'&':'?')+'client_reference_id='+encodeURIComponent(key+'-'+dt.iso);
+          btn.target='_blank'; btn.rel='noopener';
+        } else {
+          btn.href='#';
+          btn.addEventListener('click',function(e){ e.preventDefault(); });
+        }
+      }
+      row.appendChild(btn);
+      list.appendChild(row);
+    });
+    modal.classList.add('open'); document.body.style.overflow='hidden';
+  }
+
+  document.querySelectorAll('.exp').forEach(function(card){
+    function open(){ openPackage(card.getAttribute('data-package')); }
+    card.addEventListener('click',open);
+    card.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); } });
+  });
+  document.querySelectorAll('[data-close]').forEach(function(x){ x.addEventListener('click',closeModal); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeModal(); });
+
+  // Newsletter (Formspree)
+  var joinForm=document.getElementById('joinForm');
+  joinForm.addEventListener('submit',function(e){
+    e.preventDefault();
+    try{ fetch(SIGNUP_FORM,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(joinForm)}); }catch(_){}
+    joinForm.outerHTML='<p class="signup-done">You’re on the list. Welcome.</p>';
+  });
+</script>
+</body>
+</html>
